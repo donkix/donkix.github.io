@@ -96,6 +96,8 @@
                     var filename = document.getElementById('filename').value;
                     if (!filename || filename.trim() === "" || !link || link.trim() === "") {
                         openSaverButton.disabled = false;
+                        horseysNamespace.checkurl();
+                        horseysNamespace.checkfilename();
                         return;
                     } else {
                         var id = fileCount++;
