@@ -89,7 +89,7 @@
                     filename.setAttribute('onfocus', "horseysNamespace.clearTagWithId('errormessage')");
 
                     /*                                                 safari.self.addEventListener("message", horseysNamespace.handleMessage, false); */
-                                            var arrayOfStrings = ['URL', 'Save as filename', 'Show instructions', 'Hide instructions', 'Instructions', 'You must specify a url.', 'You must specify a file name.', 'There was an error when transferring your file:', 'defaultname.html', 'Choose Location', 'Enter the URL of the file you intend to download to Dropbox, where it says "URL"', 'Enter the file name, where it says "Save as file name"', 'Click on "Choose Location".', 'When the "Dropbox Saver" window opens, log into your Dropbox account (if necessary), and choose the location where you want to save the file.', 'Click "Save" in the Dropbox window', "Dropbox will download your file to your account online.  This window will show the status of your download as Dropbox attempts the transfer. If there are any errors (if you run of space etc.) they will show up here. Under normal circumstances your transfer should be successful and there is no need to keep this window open, unless you wish to monitor the status of your transfer. ", 'More information', 'Copy image to Dropbox', 'Copy linked file to Dropbox'];
+                                            var arrayOfStrings = ['URL', 'Save as filename', 'Show instructions', 'Hide instructions', 'Instructions', 'You must specify a url.', 'You must specify a file name.', 'There was an error when transferring your file:', 'defaultname.html', 'Choose Location', 'Enter the URL (eg: http://example.org/file.html) of the file you intend to download to Dropbox, where it says "URL"', 'Enter the file name, where it says "Save as file name"', 'Click on "Choose Location".', 'When the "Dropbox Saver" window opens, log into your Dropbox account (if necessary), and choose the location where you want to save the file.', 'Click "Save" in the Dropbox window', "Dropbox will download your file to your account online.  This window will show the status of your download as Dropbox attempts the transfer. If there are any errors (if you run of space etc.) they will show up here. Under normal circumstances your transfer should be successful and there is no need to keep this window open, unless you wish to monitor the status of your transfer. ", 'More information', 'Copy image to Dropbox', 'Copy linked file to Dropbox'];
 
 						localizedStrings = new Object();
                         localizedStrings.url = arrayOfStrings[0];
@@ -270,12 +270,6 @@
 
                         var br = document.createElement('br');
                         p.appendChild(br);
-/*
-                        var moreInfo = document.createElement('a');
-                        moreInfo.setAttribute('href', 'http://rahuliyer.com/horsey');
-                        moreInfo.appendChild(document.createTextNode(localizedStrings.moreInfoLinkText));
-                        p.appendChild(moreInfo);
-*/
                     }
 
                     instructionsDiv.appendChild(p);
@@ -351,6 +345,7 @@
                         <td id="instructionsButton" class="rightd"></td>
                     </tr>
                 </table>
+                By visiting this site, you agree to the <a href="tos.html">terms of service</a> and <a href="privacy.html">privacy policy</a>. If you do not agree you should leave this site immediately and not use this site. If you have any questions, see the <a href="faq.html">faq</a>
                 <table>
                     <tr>
                         <th id='urlHeading'>URL:</th>
