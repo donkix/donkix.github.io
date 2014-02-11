@@ -47,34 +47,6 @@
             var localizedStrings;
 
             return {
-                handleMessage: function (e) {
-                    if (e.name === 'receiveStrings') {
-
-                        safari.self.tab.dispatchMessage("sendLinkToDownload", "");
-                    } else if (e.name === "insertLink") {
-                        var link = e.message;
-                        if (link) {
-                            var button = horseysNamespace.addButtonTo('saveButton', 'button', 'horseysNamespace.openSaver()', localizedStrings.chooseLocation);
-                            openSaverButton = button;
-                            var filename = link.substring(link.lastIndexOf('/') + 1);
-                            if (!filename) {
-                                filename = localizedStrings.defaultFileNameWithExtension;
-                            }
-
-                            var fun = document.getElementById('fullurl');
-                            fun.value = link;
-                            var input = document.getElementById('filename');
-                            input.value = filename;
-
-                            var urlHeading = document.getElementById('urlHeading');
-                            urlHeading.appendChild(document.createTextNode(localizedStrings.url));
-
-                            var saveAsFilename = document.getElementById('saveAsFilename')
-                            saveAsFilename.appendChild(document.createTextNode(localizedStrings.saveAsFilename));
-                        }
-                    }
-                },
-
                 cancelSave: function () {
                     self.close();
                 },
@@ -336,16 +308,24 @@
 
     <div class="container">
         <div class="sixteen columns">
+            <div class="center">
             <h1 class="remove-bottom" style="margin-top: 40px">Donkix</h1>
             <hr />
-            <div class="center">
+            <p>
+					<a href="index.html">Home</a> | 
+					<a href="faq.html">Frequently asked questions</a> | 
+					<a href="faq.html#Troubleshooting">Troubleshooting</a> | 
+					<a href="tos.html">Terms of service</a> | 
+					<a href="privacy.html#Privacy">Privacy</a> | 
+					<a href="contact.html">Contact me</a> | 
+			</p>
                 <div id="instructions"></div>
                 <table>
                     <tr>
                         <td id="instructionsButton" class="rightd"></td>
                     </tr>
                 </table>
-                By visiting this site, you agree to the <a href="tos.html">terms of service</a> and <a href="privacy.html">privacy policy</a>. If you do not agree you should leave this site immediately and not use this site. If you have any questions, see the <a href="faq.html">faq</a>
+                By visiting this site, you agree to the <a href="tos.html">terms of service</a> and <a href="privacy.html">privacy policy</a>. If you do not agree you must leave this site immediately and may not use this site. If you have any questions, see the <a href="faq.html">faq</a>
                 <table>
                     <tr>
                         <th id='urlHeading'>URL:</th>

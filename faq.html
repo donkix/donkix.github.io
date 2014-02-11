@@ -6,7 +6,7 @@
   ================================================== -->
 	<meta charset="utf-8">
 	<title>Donkix</title>
-	<meta name="description" content="This is the home page of Horsey, an extension for Safari, that lets you copy files on the web directly to your Dropbox account.">
+	<meta name="description" content="This is the home page of Donkix, an extension for Safari, that lets you copy files on the web directly to your Dropbox account.">
 	<meta name="author" content="Rahul Iyer">
 
 	<!-- Mobile Specific Metas
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="stylesheets/base.css">
 	<link rel="stylesheet" href="stylesheets/skeleton.css">
 	<link rel="stylesheet" href="stylesheets/layout.css">
-	<link rel="stylesheet" href="stylesheets/horsey.css">
+	<link rel="stylesheet" href="stylesheets/Donkix.css">
 
 
 	<!--[if lt IE 9]>
@@ -46,15 +46,25 @@
 		<div class="sixteen columns ">
 			<h1 class="remove-bottom" >Donkix</h1>
 			<hr class="remove-bottom"/>
+			<p>
+					<a href="index.html">Home</a> | 
+					<a href="faq.html">Frequently asked questions</a> | 
+					<a href="faq.html#Troubleshooting">Troubleshooting</a> | 
+					<a href="tos.html">Terms of service</a> | 
+					<a href="privacy.html#Privacy">Privacy</a> | 
+					<a href="contact.html">Contact me</a> | 
+			</p>
 
 			<h3 class="remove-bottom" id="Faq">Frequently asked questions</h3>
 			<hr class="remove-bottom"/>
 			<h4>How much does it cost to use this site?</h4>
 			<p>You may and use this site for free. It is ad supported</p>
+			<h4>Can I save files directly to Dropbox without using this site?</h4>
+			<p>Yes you can! For Safari I created an <a href="http://rahuliyer.com/horsey/">extension</a> that lets you copy files directly from a website to your Dropbox. Other browsers may have extensions created by other people, which you can probably find using your favorite search engine.</p>
 			<h4>How does it work?</h4>
 			<p>First you type in the url (eg: http://example.org/file.html) and filename (eg: file.html) of the file you wish to download into the text boxes marked "URL" and "Save as filename". When you click on "Choose location", Donkix tells the Dropbox website the URL you wish to download and the file name you wish to save it as. A window opens up which allows you to log into the Dropbox website (If you are not already logged into the Dropbox website). Then you may choose which folder to save the file to. When you click "Save" the Dropbox window closes and the Dropbox starts the copy the file. The window that Donkix opened up to let you edit the URL and filename will now show a progress bar next to the file name to indicate how much progress Dropbox has made when trying to download your file. If there is any problem, an error message will appear in this window.</p>
 			<h4>Why should I use Donkix? I can download files directly to my computer!</h4>
-			<p>You may certainly download files directly to your computer, but there are situations when saving a file directly to your Dropbox account may be more useful:
+			<p>There are situations when saving a file directly to your Dropbox account may be more convenient:
 				<ul class="disc">
 					<li><strong>When downloading large files</strong>, you may want to copy the file directly to you Dropbox account to save space on your computer.</li>
 					<li><strong>When the connection between your computer and the website containing the file is slow, but the connection between you and Dropbox is fast</strong>, it may take less time to copy the file from the website directly to Dropbox, and let the Dropbox app download the file to your computer.</li>
@@ -67,29 +77,29 @@
 			<p>No - Donkix does not store, transmit or share the websites you visit with anyone. When you try to download a file using Donkix, the only information Donkix sends to Dropbox is the URL to the file you intend to copy, as well as the name of the file. This is required for Dropbox to download the file. The window that opens up to let you log into Dropbox, and select the folder to save to, is operated by Dropbox. Any information you store on Dropbox is subject to the privacy policy of Dropbox</p>
 			<h4>Do I have to wait for the copy to complete?</h4>
 			<p>Once the progress bar appears, you can be assured that Dropbox is attempting to copy the file you requested. Normally the copy should complete successfully. There are situations when a copy won't be successful - such as when your Dropbox account is full, or if there is a server error. On such occasions, the error message normally appears on the window. If you close the window you won't see the error message, and you won't know that the copy didn't complete until you check your Dropbox account.</p>
-			<h4>What if I want to download files directly to my computer?</h4>
-			<p>Donkix doesn't remove any functionality. You can download files to your device just like you always did. Donkix tells Dropbox to download a file only when you intentionally choose the option of saving to Dropbox</p>
 			<h4>What if I don't want the file to be downloaded to my computer from Dropbox?</h4>
 			<p>You can configure the Dropbox app on your device to sync only certain folders. When the Dropbox Saver window opens, select the folder that you have chosen not to sync with your device. The file will be saved to that folder on your Dropbox account, but will not sync with the devices in which you have configured Dropbox not to sync that folder.</p>
-			<h4>Why does Donkix show me the URL and file name before opening the Dropbox saver?</h4>
-			<p>Some websites use a number of techniques to hide the real url on their webpage. Donkix shows you the url, so you can determine if it is the one you intend to download. Keep in mind, that neither Donkix nor Dropbox know what the actual content of the file being downloaded is. It is up to you to download files only from trustworthy websites. When Donkix reads a url, it attempts to suggest a file name based on the last part of the url. This name may not be descriptive to you, and so you should choose a file name that will describe to you what the file is.</p>
 			<h4>Why do I have to choose a location in my Dropbox account each time?</h4>
 			<p>Donkix doesn't know anything about your Dropbox account. All it does is send Dropbox a URL and filename. Dropbox opens the Dropbox saver so you can log in, and choose the location where to save the file.</p>
-			<h4>I can't read the full URL or filename. It is too long!</h4>
-			<p>You can scroll through the URL or filename input field to read the entire text. Some websites have large urls and filenames. You can change the filename to any valid filename, but you shouldn't change the URL unless you are attempting to download a different file. The URL signifies the location of the file you are trying to download. If you change the URL, Dropbox will look at the new URL which may point to a location that does not exist.</p>
-			<h4>Can I use Donkix to copy images to my Dropbox account?</h4>
-			<p>Yes you can! Right-click on the image, and select "Copy image to Dropbox" from the context menu that appears. The rest of the process is the same as when you save files to Dropbox.</p>
-			<h4>Why did you make this extension?</h4>
-			<p>I was trying to download images from the NASA website, but the files would take too long to download. I figured that maybe the connection between my computer and NASA is slow, but between Dropbox and NASA may be fast! So I started looking at the Dropbox API, and tried it out.</p>
-		</div>
 			
-			<h3>Support</h3>
+			<h3 class="remove-bottom" id="Troubleshooting">Troubleshooting</h3>
 			<hr class="remove-bottom"/>
-			<p>This site has been build independently by me, Rahul Iyer. It has no affiliation with Dropbox. This site uses the Dropbox API. If you need help using this site, please refer to the <a href="faq.html">Faq</a> section of this site first. If you still have questions, feel free to contact me using the email address described below. If you have specific questions regarding Dropbox, or Apple products, please refer to their respective websites.</p>
-	
-			<h3 id="Contact%20me">Contact me</h3>
-			<hr class="remove-bottom"/>
-			<p>You may contact me by sending email to: <strong>[the name of this site]@rahuliyer.com</strong>. Be sure to replace the information within [ ] with the correct information. </p>
+			<h4>The progress window shows the file copy completed, but I don't see the file on my device. Where is it?</h4>
+			<p>When you copy a file using Donkix, the files is sent to your Dropbox account online. The progress window only lets you know when the copy to your Dropbox account has completed. Once the file has been copied to your Dropbox account, it will sync with your devices like any other file in your Dropbox account depending on the settings you have chosen in Dropbox.</p>
+			<h4>The progress window shows that the status of my copy is at 0%. Eventually I see an error message saying that the attempt timed out. What is the problem?</h4>
+			<p>Donkix uses the Dropbox API to tell Dropbox to download files for you. If the Dropbox service is busy or has some kind of problem, your request may time out. This may be a temporary interruption in service.You can try again later, and your copy may proceed normally, but during the interim, there isn't much else you can do besides try downloading the file directly to your computer without Donkix.</p>
+			<h4>Why can't I copy files from internal websites, or sites that require authentication</h4>
+			<p>The Dropbox service cannot access URLs that are not public, or which requires one to "log in" to a service.</p>
+			<h4>Why can't I use Donkix to download from my favorite file sharing service like Rapidshare, Hotfile etc.?</h4>
+			<p>When Donkix sends a URL to Dropbox, Dropbox tries to download exactly that URL. Most filesharing services create a temporary URL for you to download a file directly to your computer, and which cannot be reused by other people. As a result, Dropbox may not be able to download the file from that service. Likewise, if a website required you to log into it to download content, it is unlikely that Dropbox will be able to copy that file either.</p>
+			<h4>What does this error message mean?</h4>
+			<p>If the progress window displays an error message, it means that Dropbox was not able to successfully copy the file. The error message you see is the one that Dropbox sent explaining why Dropbox couldn't complete the copy. There could be a number of reasons why the copy didn't succeed, and I don't have an exhaustive list of what the error messages are, and what they mean. Some possible reasons could be - your Dropbox account is full, the server encountered an error, the file no longer exists or some other reason.</p>
+			<h4>Sometimes Donkix gets files I didn't expect. What's going on?</h4>
+			<p>Some websites don't link directly to their files. When you normally click on these links the website actually "redirects" you to the actual location of the file. When you normally download a file this may happen so quickly that you wouldn't notice, and your browser opens the new "redirected" URL. Unfortunately, Donkix doesn't know if a url leads to a "redirect" or the actual file. Whatever the url you type in is, Donkix sends this url to Dropbox, and that is the one Dropbox tries to download. If you know the actual URL of the file, and still wish to use Donkix to copy the file directly to Dropbox, you can copy and paste the url in the textfield marked "URL". If this URL points directly at the file, it should be copied to Dropbox as expected. </p>
+			<h4>Why won't the file I saved to Dropbox sync with my device?</h4>
+			<p>If the sync settings on your device are not set to sync the folder containing your file, then the file won't be synced with your device. There could also be other reasons, such as the file name that you chose not being compatible with your operating system.</p>
+			<h4>This site doesn't work with my browser</h4>
+			<p>This site has been designed to work with Safari 7+. I haven't tried supporting other browsers.</p>			
 		</div>
 	</div><!-- container -->
 
