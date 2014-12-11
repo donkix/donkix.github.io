@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Horsey</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="../stylesheets/base.css">
+	<link rel="stylesheet" href="../stylesheets/skeleton.css">
+	<link rel="stylesheet" href="../stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/horsey.css">
+
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="three columns sidebar">
+			<nav>
+				<ul>
+					<li><a href="index.html#About">About</a></li>
+					<li><a href="index.html#Installation">Installation</a></li>
+					<li><a href="index.html#HowToUse">How to use</a></li>
+					<li><a href="faq.html#Faq">Frequently asked questions</a></li>
+					<li><a href="troubleshooting.html#Troubleshooting">Troubleshooting</a></li>
+					<li><a href="index.html#Privacy">Privacy</a></li>
+					<li><a href="index.html#Contact%20me">Contact me</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="twelve columns offset-by-three">
+			<h1 class="remove-bottom" >Horsey</h1>
+			<hr class="remove-bottom"/>
+			<p class="hiddenNav">
+				<a href="index.html#About">About</a> | 
+				<a href="index.html#Installation">Installation</a> | 
+				<a href="index.html#HowToUse">How to use</a> | 
+				<a href="faq.html#Faq">Frequently asked questions</a> | 
+				<a href="troubleshooting.html#Troubleshooting">Troubleshooting</a> | 
+				<a href="index.html#Privacy">Privacy</a> | 
+				<a href="index.html#Contact%20me">Contact me</a> | 
+			</p>
+			<h3 class="remove-bottom" id="Troubleshooting">Troubleshooting</h3>
+			<hr class="remove-bottom"/>
+			<h4>The progress window shows the file copy completed, but I don't see the file on my device. Where is it?</h4>
+			<p>When you copy a file using Horsey, the files is sent to your Dropbox account online. The progress window only lets you know when the copy to your Dropbox account has completed. Once the file has been copied to your Dropbox account, it will sync with your devices like any other file in your Dropbox account depending on the settings you have chosen in Dropbox.</p>
+			<h4>The progress window shows that the status of my copy is at 0%. Eventually I see an error message saying that the attempt timed out. What is the problem?</h4>
+			<p>Horsey uses the Dropbox API to tell Dropbox to download files for you. If the Dropbox service is busy or has some kind of problem, your request may time out. This may be a temporary interruption in service.You can try again later, and your copy may proceed normally, but during the interim, there isn't much else you can do besides try downloading the file directly to your computer without Horsey.</p>
+			<h4>Why can't I copy files from internal websites, or sites that require authentication</h4>
+			<p>The Dropbox service cannot access URLs that are not public, or which requires one to "log in" to a service.</p>
+			<h4>Why can't I use Horsey to download from my favorite file sharing service like Rapidshare, Hotfile etc.?</h4>
+			<p>When Horsey sends a URL to Dropbox, Dropbox tries to download exactly that URL. Most filesharing services create a temporary URL for you to download a file directly to your computer, and which cannot be reused by other people. As a result, Dropbox may not be able to download the file from that service. Likewise, if a website required you to log into it to download content, it is unlikely that Dropbox will be able to copy that file either.</p>
+			<h4>What does this error message mean?</h4>
+			<p>If the progress window displays an error message, it means that Dropbox was not able to successfully copy the file. The error message you see is the one that Dropbox sent explaining why Dropbox couldn't complete the copy. There could be a number of reasons why the copy didn't succeed, and I don't have an exhaustive list of what the error messages are, and what they mean. Some possible reasons could be - your Dropbox account is full, the server encountered an error, the file no longer exists or some other reason.</p>
+			<h4>Sometimes Horsey gets files I didn't expect. What's going on?</h4>
+			<p>Some websites don't link directly to their files. When you normally click on these links the website actually "redirects" you to the actual location of the file. When you normally download a file this may happen so quickly that you wouldn't notice, and your browser opens the new "redirected" URL. Unfortunately, Horsey doesn't know if a url leads to a "redirect" or the actual file. Whatever the url is, Horsey sends the initial url to Dropbox, and that is the one Dropbox tries to download. If you know the actual URL of the file, and still wish to use Horsey to copy the file directly to Dropbox, you can copy and paste the url in the textfield marked "URL" in the window that Horsey opens. If this URL points directly at the file, it should be copied to Dropbox as expected. </p>
+			<h4>Why won't the file I saved to Dropbox sync with my device?</h4>
+			<p>If the sync settings on your device are not set to sync the folder containing your file, then the file won't be synced with your device. There could also be other reasons, such as the file name that you chose not being compatible with your operating system.</p>
+		</div>
+	</div><!-- container -->
+
+
+<!-- End Document
+================================================== -->
+</body>
+</html>
