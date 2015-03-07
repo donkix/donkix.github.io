@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8">
+    <title>Donkix</title>
+    <meta name="description" content="Donkix lets you copy files to your Dropbox account without having to download it to your computer first.">
+    <meta name="author" content="Rahul Iyer">
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="stylesheets/base.css">
+    <link rel="stylesheet" href="stylesheets/skeleton.css">
+    <link rel="stylesheet" href="stylesheets/layout.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <!-- Favicons
+	================================================== -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/1/dropins.js" id="dropboxjs" data-app-key="neoz1hvfvm2qrf0"></script>
+
+    <script>
+        var horseysNamespace = (function () {
+            var p;
+            var fileCount;
+            var openSaverButton;
+            var localizedStrings;
+
+            return {
+                cancelSave: function () {
+                    self.close();
+                },
+
+                onLoad: function () {
+                    var fullurl = document.getElementById('fullurl');
+                    fullurl.setAttribute('onblur', 'horseysNamespace.checkurl()');
+                    fullurl.setAttribute('onfocus', "horseysNamespace.clearTagWithId('urlerrormessage')");
+
+                    var filename = document.getElementById('filename');
+                    filename.setAttribute('onblur', 'horseysNamespace.checkfilename()');
+                    filename.setAttribute('onfocus', "horseysNamespace.clearTagWithId('errormessage')");
+
+                    /*                                                 safari.self.addEventListener("message", horseysNamespace.handleMessage, false); */
+                                            var arrayOfStrings = ['URL', 'Save as filename', 'Show instructions', 'Hide instructions', 'Instructions', 'You must specify a url.', 'You must specify a file name.', 'There was an error when transferring your file:', 'defaultname.html', 'Choose Location', 'Enter the URL (eg: http://example.org/file.html) of the file you intend to download to Dropbox, where it says "URL"', 'Enter the file name, where it says "Save as file name"', 'Click on "Choose Location".', 'When the "Dropbox Saver" window opens, log into your Dropbox account (if necessary), and choose the location where you want to save the file.', 'Click "Save" in the Dropbox window', "Dropbox will download your file to your account online.  This window will show the status of your download as Dropbox attempts the transfer. If there are any errors (if you run of space etc.) they will show up here. Under normal circumstances your transfer should be successful and there is no need to keep this window open, unless you wish to monitor the status of your transfer. ", 'More information', 'Copy image to Dropbox', 'Copy linked file to Dropbox'];
+
+						localizedStrings = new Object();
+                        localizedStrings.url = arrayOfStrings[0];
+                        localizedStrings.saveAsFilename = arrayOfStrings[1];
+                        localizedStrings.showInstructions = arrayOfStrings[2];
+                        localizedStrings.hideInstructions = arrayOfStrings[3];
+                        localizedStrings.instructions = arrayOfStrings[4];
+                        localizedStrings.urlTextboxErrorMessage = arrayOfStrings[5];
+                        localizedStrings.filenameTextboxErrorMessage = arrayOfStrings[6];
+                        localizedStrings.thereWasAnError = arrayOfStrings[7];
+                        localizedStrings.defaultFileNameWithExtension = arrayOfStrings[8];
+                        localizedStrings.chooseLocation = arrayOfStrings[9];
+                        localizedStrings.instructions1 = arrayOfStrings[10];
+                        localizedStrings.instructions2 = arrayOfStrings[11];
+                        localizedStrings.instructions3 = arrayOfStrings[12];
+                        localizedStrings.instructions4 = arrayOfStrings[13];
+                        localizedStrings.instructions5 = arrayOfStrings[14];
+                        localizedStrings.instructionsPara = arrayOfStrings[15];
+                        localizedStrings.moreInfoLinkText = arrayOfStrings[16];
+                        localizedStrings.saveImageToDropboxCtxMenuItem = arrayOfStrings[17];
+                        localizedStrings.saveLinkedFileToDropboxCtxMenuItem = arrayOfStrings[18];
+                        horseysNamespace.hideInstructions();
+                    fileCount = 0;
+                            var button = horseysNamespace.addButtonTo('saveButton', 'button', 'horseysNamespace.openSaver()', localizedStrings.chooseLocation);
+                            openSaverButton = button;
+					var urly = horseysNamespace.getParameterByName('url');
+					if(urly){
+						fullurl.value = urly;
+						var filey = urly.substring(urly.lastIndexOf('/') + 1);
+						filename.value = filey;
+					}
+                },
+
+                openSaver: function () {
+                    openSaverButton.disabled = true;
+                    var link = document.getElementById('fullurl').value;
+                    var filename = document.getElementById('filename').value;
+                    if (!filename || filename.trim() === "" || !link || link.trim() === "") {
+                        openSaverButton.disabled = false;
+                        horseysNamespace.checkurl();
+                        horseysNamespace.checkfilename();
+                        return;
+                    } else {
+                        var id = fileCount++;
+                        var progressNode = document.createElement('table')
+                        progressNode.setAttribute('id', 'transfer' + id);
+                        var progress = document.getElementById('progress');
+                        progress.appendChild(progressNode);
+
+                        var options = {
+                            files: [{
+                                'url': link,
+                                'filename': filename
+                            }],
+                            success: function () {
+                                horseysNamespace.showSuccess(id);
+                            },
+                            progress: function (progress) {
+                                horseysNamespace.updateProgressBar(progress, id, filename);
+                            },
+                            cancel: function () {},
+                            error: function (errorMessage) {
+                                horseysNamespace.showErrorMessage(errorMessage, id, filename);
+                            }
+                        };
+                        Dropbox.save(options);
+                    }
+
+                    setTimeout(function () {
+                        openSaverButton.disabled = false;
+                    }, 1000);
+                },
+
+                clearTagWithId: function (id) {
+                    var statusMessageDiv = document.getElementById(id);
+                    while (statusMessageDiv.firstChild) {
+                        statusMessageDiv.removeChild(statusMessageDiv.firstChild);
+                    }
+                },
+
+                showErrorMessage: function (errorMessage, id, filename) {
+                    var errorTd = document.getElementById('errorId' + id)
+                    if (!errorTd) {
+                        var errorTable = document.createElement('table');
+                        var errorTr = document.createElement('tr');
+                        errorTd = document.createElement('td');
+                        errorTd.setAttribute('id', 'errorId' + id);
+                        errorTd.setAttribute('class', 'errorId');
+
+                        errorTable.appendChild(errorTr);
+                        errorTr.appendChild(errorTd);
+
+                        var progressNode = document.getElementById('transfer' + id);
+                        progressNode.appendChild(errorTable);
+                    }
+
+                    var text = document.createTextNode(localizedStrings.thereWasAnError + ' ' + errorMessage);
+                    errorTd.appendChild(text);
+                },
+
+                showSuccess: function (id) {
+                    var progressDiv = document.getElementById('percent' + id);
+                    if (progressDiv) {
+                        progressDiv.innerHTML = '100%' + '&#x2713;';
+                    }
+                    var fileDiv = document.getElementById('fileid' + id);
+                    if (fileDiv) {
+                        fileDiv.appendChild(document.createTextNode('\u2713'));
+                    }
+                },
+
+                updateProgressBar: function (progress, id, filename) {
+                    var progressNode = document.getElementById('transfer' + id);
+                    var sliderDiv = document.getElementById('slider' + id);
+                    var progressDiv = document.getElementById('percent' + id);
+                    if (!sliderDiv) {
+                        var tr1 = document.createElement('tr');
+                        var td0 = document.createElement('td');
+                        td0.appendChild(document.createTextNode(filename));
+                        td0.setAttribute('id', 'fileid' + id);
+                        tr1.appendChild(td0);
+
+                        var tr2 = document.createElement('tr');
+
+                        var td1 = document.createElement('td');
+                        td1.setAttribute('class', 'downloadStatus');
+                        tr2.appendChild(td1);
+
+                        sliderDiv = document.createElement('div');
+                        sliderDiv.setAttribute('class', 'slider');
+                        sliderDiv.setAttribute('id', 'slider' + id);
+                        td1.appendChild(sliderDiv);
+
+                        progressDiv = document.createElement('div');
+                        progressDiv.setAttribute('class', 'percent');
+                        progressDiv.setAttribute('id', 'percent' + id);
+                        sliderDiv.appendChild(progressDiv);
+
+                        progressNode.appendChild(tr1);
+                        progressNode.appendChild(tr2);
+                    }
+
+
+                    progress = Math.round((progress * 100));
+                    sliderDiv.style.width = progress + '%';
+                    progressDiv.innerHTML = progress + '%';
+                },
+
+                checkfilename: function () {
+                    horseysNamespace.checkTextField('filename', 'errormessage', localizedStrings.filenameTextboxErrorMessage);
+                },
+
+                checkurl: function () {
+                    horseysNamespace.checkTextField('fullurl', 'urlerrormessage', localizedStrings.urlTextboxErrorMessage);
+                },
+
+                checkTextField: function (textFieldId, errorFieldId, errorMessage) {
+                    var input = document.getElementById(textFieldId);
+                    input.value = input.value.trim();
+                    var vals = input.value;
+                    if (!vals || vals === "") {
+                        horseysNamespace.clearTagWithId(errorFieldId);
+                        var statusMessageDiv = document.getElementById(errorFieldId);
+                        var errorTextNode = document.createTextNode(errorMessage);
+                        statusMessageDiv.appendChild(errorTextNode);
+                    } else {
+                        horseysNamespace.clearTagWithId('errormessage');
+                    }
+                },
+
+                showInstructions: function () {
+                    horseysNamespace.clearTagWithId('instructions');
+                    horseysNamespace.clearTagWithId('instructionsButton');
+                    var instructionsDiv = document.getElementById('instructions');
+
+                    if (!p) {
+                        p = document.createElement('p');
+                        p.appendChild(document.createTextNode(localizedStrings.instructions));
+
+                        var myStringArray = [localizedStrings.instructions1, localizedStrings.instructions2, localizedStrings.instructions3, localizedStrings.instructions4, localizedStrings.instructions5];
+                        var ol = horseysNamespace.createOlWithArrayOfLiTexts(myStringArray);
+
+                        p.appendChild(ol);
+                        p.appendChild(document.createTextNode(localizedStrings.instructionsPara));
+
+                        var br = document.createElement('br');
+                        p.appendChild(br);
+                    }
+
+                    instructionsDiv.appendChild(p);
+                    horseysNamespace.addButtonTo('instructionsButton', 'button', 'horseysNamespace.hideInstructions()', localizedStrings.hideInstructions);
+                },
+
+                createOlWithArrayOfLiTexts: function (liTexts) {
+                    var ol = document.createElement('ol');
+                    for (var i = 0; i < liTexts.length; i++) {
+                        horseysNamespace.createLiAndAppendToOl(liTexts[i], ol)
+                    }
+
+                    return ol;
+                },
+
+                createLiAndAppendToOl: function (liText, ol) {
+                    var li = horseysNamespace.createLiWithText(liText);
+                    ol.appendChild(li);
+                },
+
+                createLiWithText: function (text) {
+                    var li = document.createElement('li');
+                    li.appendChild(document.createTextNode(text));
+                    return li;
+                },
+
+                hideInstructions: function () {
+                    horseysNamespace.clearTagWithId('instructions');
+                    horseysNamespace.clearTagWithId('instructionsButton');
+                    horseysNamespace.addButtonTo('instructionsButton', 'button', 'horseysNamespace.showInstructions()', localizedStrings.showInstructions);
+                },
+
+                addButtonTo: function (containerId, buttonType, onclickFunction, displayText) {
+                    var container = document.getElementById(containerId);
+                    var button = horseysNamespace.createButton(buttonType, onclickFunction, displayText);
+                    container.appendChild(button);
+                    return button;
+                },
+
+                createButton: function (type, onclick, displayText) {
+                    var button = document.createElement('button');
+                    button.setAttribute("type", type);
+                    button.setAttribute("onclick", onclick);
+                    var textNode = document.createTextNode(displayText);
+                    button.appendChild(textNode);
+                    return button;
+                },
+                
+                getParameterByName: function (name) {
+				    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+				    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				        results = regex.exec(location.search);
+				    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+				}
+            }
+
+        })();
+
+        window.addEventListener('load', horseysNamespace.onLoad, false);
+    </script>
+</head>
+
+<body>
+
+
+
+    <!-- Primary Page Layout
+	================================================== -->
+
+    <!-- Delete everything in this .container and get started on your own site! -->
+
+    <div class="container">
+        <div class="sixteen columns">
+            <div class="center">
+            <h1 class="remove-bottom" style="margin-top: 40px">Donkix</h1>
+            <hr class="remove-bottom" />
+            <p>
+					<a href="index.html">Home</a> | 
+					<a href="faq.html">Frequently asked questions</a> | 
+					<a href="faq.html#Troubleshooting">Troubleshooting</a> | 
+					<a href="tos.html">Terms of service</a> | 
+					<a href="privacy.html#Privacy">Privacy</a> | 
+					<a href="contact.html">Contact me</a> | 
+			</p>
+			Hello! This site lets you copy files directly to your Dropbox without having to download them to your computer first.
+                <div id="instructions"></div>
+                <table>
+                    <tr>
+                        <td id="instructionsButton" class="rightd"></td>
+                    </tr>
+                </table>
+                By visiting this site, you agree to the <a href="tos.html">terms of service</a> and <a href="privacy.html">privacy policy</a>. If you do not agree you must leave this site immediately and may not use this site. If you have any questions, see the <a href="faq.html">faq</a>
+                <table>
+                    <tr>
+                        <th id='urlHeading'>URL:</th>
+                    </tr>
+                    <tr>
+                        <td class="leftd">
+                            <div class="cc">
+                                <div id="urlerrormessage"></div>
+                                <input id="fullurl" type="text" name="fullurl" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th id='saveAsFilename'>Save as file name:</th>
+                    </tr>
+                    <tr>
+                        <td class="leftd">
+                            <div class="cc">
+                                <div id="errormessage"></div>
+                                <input id="filename" type="text" name="filename" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td id="saveButton" class="rightd"></td>
+                    </tr>
+                </table>
+                <table id="progress"></table>
+            </div>
+        </div>
+
+    </div>
+    <!-- container -->
+
+
+    <!-- End Document
+================================================== -->
+</body>
+
+</html>
